@@ -58,8 +58,8 @@ class Oscilator {
     }
 
     double map(double min, double max) {
-      double a = ampl / -2;
-      double b = ampl / 2;
+      double a = ampl * -1;
+      double b = ampl * 1;
       return scalar / (b - a) * (max - min) + min;
     }
 

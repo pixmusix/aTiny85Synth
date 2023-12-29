@@ -1,26 +1,20 @@
 #include "Oscilator.h"
 #include "Bus.h"
 
-double f;
-
 Bus aux;
-Tri osc_tri = Tri(0.00003, 1, 0.0);
-Saw osc_saw = Saw(0.003, 1.2, 0.314);
-Sine LFO = Sine(0.00002, 1.0, 0.0);
+Saw osc_saw = Saw(0.5, 1.0, 0.0);
+Square osc_sq = Square(8.5, 0.5, 0.0);
+Sine LFO = Sine(0.7, 0.76, 0.0);
 
 void setup() {
   aux = initBus(aux);
-  f = 1.1;
 }
 
 void loop() {
-  osc_tri.setPhaz(LFO.tick());
-  osc_tri.tick();
-  
-  // f = f - 0.00001;
-  // osc_saw.setFreq(f);
   osc_saw.tick();
-
-  osc_tri.add(osc_saw);
-  aux.spill(osc_tri.map(0.0, 255.0)); 
+  LFO.tick();
+  osc_sq.tick();
+  osc_saw.mult(LFO);
+  osc_saw.add(osc_sq);
+  aux.spill(osc_saw.map(0, 250.5));
 }

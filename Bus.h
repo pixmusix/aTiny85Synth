@@ -12,7 +12,7 @@ struct Bus {
   }
 
   void spill() {
-    shiftOut(DAT, CLK, LSBFIRST, value);
+    shiftOut(DAT, CLK, MSBFIRST, value);
     toggleLatch();
   }
 
