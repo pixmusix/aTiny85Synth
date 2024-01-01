@@ -42,6 +42,31 @@ class Oscilator {
       return *this;
     }
 
+    Oscilator add(double k) {
+      scalar += k;
+      return *this;
+    }
+
+    Oscilator mult(double k) {
+      scalar = scalar * k;
+      return *this;
+    }
+
+    Oscilator sub(double k) {
+      scalar -= k;
+      return *this;
+    }
+
+    Oscilator div(double k) {
+      scalar = scalar / k;
+      return *this;
+    }
+
+    Oscilator mod(double k) {
+      scalar = fmod(scalar, k);
+      return *this;
+    }
+
     Oscilator freqAdd(Oscilator other) {
       freq = freq + other.scalar;
       return *this;
@@ -58,8 +83,8 @@ class Oscilator {
     }
 
     double map(double min, double max) {
-      double a = ampl * -1;
-      double b = ampl * 1;
+      double a = ampl * -2;
+      double b = ampl * 2;
       return scalar / (b - a) * (max - min) + min;
     }
 
